@@ -1,0 +1,122 @@
+<!-- Page Header -->
+<div class="page-header">
+  <span class="page-tag">Our Organisation</span>
+  <h2 class="page-heading">Who We Are</h2>
+  <p class="page-subheading">The National Audit Office of Mauritius</p>
+</div>
+
+<!-- Key Facts Bar -->
+<div class="facts-bar">
+  @for (fact of keyFacts; track fact.label) {
+    <div class="fact-item">
+      <span class="fact-value">{{ fact.value }}</span>
+      <span class="fact-label">{{ fact.label }}</span>
+    </div>
+  }
+</div>
+
+<!-- Main Body -->
+<div class="content-card">
+  <p>
+    The Director of Audit is the Head of the National Audit Office (NAO) which is an
+    independent Constitutional body established under Section 110 of the Constitution of
+    the Republic of Mauritius. The Director of Audit is an independent officer whose
+    independence is protected under the Constitution.
+  </p>
+  <p>
+    The NAO provides independent assurance to the National Assembly on whether the
+    government's financial transactions and statements are in order and whether public
+    resources have been used economically, efficiently and effectively. This assurance is
+    communicated through reports submitted to the National Assembly.
+  </p>
+  <p>
+    The main outputs of NAO are the Annual Report of the Director of Audit on the
+    accounts of Ministries/Departments of Government, the Annual Financial Statements of
+    Public Bodies, and Report on Specific Examinations. Reports are laid before the
+    National Assembly and are available to the public.
+  </p>
+  <p>
+    Audit services provided by the NAO include financial, performance, compliance and IT
+    audits for some 200 entities of the public sector including Central Government,
+    Statutory Bodies, Local Authorities, Rodrigues Regional Assembly, Outer Islands
+    Development Corporation, the University of Mauritius and the University of Technology.
+  </p>
+  <p>
+    The NAO undertakes financial audits to provide an opinion on whether the financial
+    statements of Ministries/Departments and Public Bodies present fairly their financial
+    position and results of operations, in accordance with applicable accounting standards
+    and the relevant legal and regulatory requirements.
+  </p>
+  <p>
+    Performance audits are carried out to assess the economy, efficiency and effectiveness
+    of major government programmes and projects. Compliance audits are conducted to
+    ascertain adherence to laws, regulations, policies and procedures. IT audits focus on
+    the reliability, security and efficiency of government information systems.
+  </p>
+  <p>
+    The NAO is a member of the International Organisation of Supreme Audit Institutions
+    (INTOSAI), the African Organisation of English-speaking Supreme Audit Institutions
+    (AFROSAI-E), the Common Market for Eastern and Southern Africa (COMESA) and the
+    Commission de l'Océan Indien (COI). These memberships allow the NAO to benchmark
+    itself against international best practices and benefit from knowledge sharing and
+    capacity building initiatives.
+  </p>
+</div>
+
+<!-- Constitutional Mandate Highlight -->
+<div class="mandate-block">
+  <div class="mandate-icon">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="22" height="22">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+    </svg>
+  </div>
+  <div>
+    <p class="mandate-title">Constitutional Mandate</p>
+    <p class="mandate-text">
+      The independence and powers of the Director of Audit are enshrined in
+      <strong>Section 110 of the Constitution of the Republic of Mauritius</strong>,
+      ensuring that the audit function remains free from executive interference and
+      that audit findings are reported objectively to Parliament.
+    </p>
+  </div>
+</div>
+
+<!-- International Memberships -->
+<div class="section-block">
+  <h3 class="section-title">International Memberships</h3>
+  <p class="section-intro">
+    The NAO actively participates in international and regional audit organisations,
+    contributing to and benefiting from global audit knowledge and standards.
+  </p>
+  <div class="memberships-grid">
+    @for (org of memberships; track org.name) {
+      <div class="membership-card">
+        <div class="membership-badge">
+          <span class="membership-flag">{{ org.flag }}</span>
+          <span class="membership-name">{{ org.name }}</span>
+        </div>
+        <p class="membership-full">{{ org.full }}</p>
+        <p class="membership-desc">{{ org.desc }}</p>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-row">
+  <a routerLink="/staff" class="cta-btn">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+    </svg>
+    Meet Our Team
+  </a>
+  <a routerLink="/about/history" class="cta-btn secondary">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    Our History
+  </a>
+</div>

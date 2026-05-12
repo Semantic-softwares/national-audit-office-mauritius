@@ -1,0 +1,63 @@
+<!-- Page Header -->
+<div class="page-header">
+  <span class="page-tag">Our Purpose</span>
+  <h2 class="page-heading">Our Mission</h2>
+  <p class="page-subheading">What drives us every day</p>
+</div>
+
+<!-- Mission Statement -->
+<div class="mission-statement">
+  <div class="quote-mark">"</div>
+  <blockquote>
+    Promoting good governance in the public sector through the delivery of high quality audit
+    services and providing independent assurance to the National Assembly on the proper
+    accounting and use of public resources.
+  </blockquote>
+  <div class="statement-footer">
+    <div class="statement-line"></div>
+    <span class="statement-label">NAO Mission Statement</span>
+  </div>
+</div>
+
+<!-- Core Values -->
+<div class="section-block">
+  <h3 class="section-title">Our Core Values</h3>
+  <p class="section-intro">
+    These four values define how we conduct our work and engage with our stakeholders,
+    forming the foundation of everything we do at the National Audit Office.
+  </p>
+  <div class="values-grid">
+    @for (value of values; track value.title) {
+      <div class="value-card">
+        <div class="value-icon-wrap">
+          <svg class="value-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" [attr.d]="value.icon"/>
+          </svg>
+        </div>
+        <h4 class="value-title">{{ value.title }}</h4>
+        <p class="value-desc">{{ value.desc }}</p>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- Strategic Objectives -->
+<div class="section-block objectives-section">
+  <h3 class="section-title">Strategic Objectives</h3>
+  <p class="section-intro">
+    Our strategic objectives translate the mission into concrete areas of action,
+    guiding our work plan and resource allocation.
+  </p>
+  <ul class="objectives-list">
+    @for (obj of objectives; track obj) {
+      <li class="objective-item">
+        <div class="obj-marker">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <span>{{ obj }}</span>
+      </li>
+    }
+  </ul>
+</div>

@@ -1,0 +1,64 @@
+<section class="about-section">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <!-- Image side -->
+      <div class="image-side">
+        <div class="image-wrapper">
+          <img
+            src="assets/images/dr-dharamraj-paligadu.jpg"
+            alt="Dr Dharamraj Paligadu, Director of Audit"
+            class="main-image"
+          />
+          <div class="experience-badge">
+            <span class="exp-number">56</span>
+            <span class="exp-text">Years of<br>Excellence</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content side -->
+      <div class="content-side">
+        <span class="section-tag">Message from the Director of Audit</span>
+        <h2 class="section-title">
+          Upholding Public<br>
+          <span class="highlight">Financial Integrity</span>
+        </h2>
+        <p class="lead-text">
+          As the Director of Audit, I am delighted to extend a warm welcome to all our visitors.
+          Our website serves as a central hub for valuable information regarding our audit processes,
+          findings, and recommendations.
+        </p>
+        <p class="body-text">
+          At NAO, we are dedicated to promoting transparency, accountability, and excellence in auditing.
+          Through our work, we aim to contribute to the integrity and efficiency of the organisations
+          we audit. We invite you to explore our website and discover the insights we offer.
+        </p>
+        <p class="body-text italic">
+          Thank you for visiting, and we look forward to providing you with valuable resources and insights.
+        </p>
+
+        <div class="director-sig">
+          <div class="sig-line"></div>
+          <p class="sig-name">Dr Dharamraj Paligadu</p>
+          <p class="sig-role">Director of Audit</p>
+        </div>
+
+        <ul class="highlights-list">
+          @for (h of highlights; track h) {
+            <li>
+              <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+              </svg>
+              {{ h }}
+            </li>
+          }
+        </ul>
+
+        <div class="flex flex-wrap gap-4 mt-8">
+          <a routerLink="/about" class="btn-primary">Learn More About NAO</a>
+          <a routerLink="/reports" class="btn-ghost">View Reports</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

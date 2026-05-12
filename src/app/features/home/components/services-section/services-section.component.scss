@@ -1,0 +1,131 @@
+.services-section {
+  padding: 5.5rem 0;
+  background: #f8f9fc;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 3rem;
+}
+
+.section-tag {
+  display: inline-block;
+  background: rgba(200, 168, 75, 0.12);
+  color: #c8a84b;
+  border: 1px solid rgba(200, 168, 75, 0.35);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 0.875rem;
+}
+
+.section-title {
+  font-size: clamp(1.625rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: #0a1628;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  color: #c8a84b;
+}
+
+.section-desc {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  line-height: 1.7;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  background: white;
+  border: 1px solid #e5e9f0;
+  border-radius: 10px;
+  padding: 1.75rem 1.5rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #c8a84b, #e8c96a);
+    transform: scaleY(0);
+    transition: transform 0.25s ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+    border-color: transparent;
+
+    &::after {
+      transform: scaleY(1);
+    }
+
+    .service-icon {
+      background: #0f2044;
+      color: #c8a84b;
+    }
+
+    .service-arrow {
+      opacity: 1;
+      transform: translateX(0);
+      color: #c8a84b;
+    }
+  }
+}
+
+.card-number {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #c8a84b;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+.service-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background: #f0f4f8;
+  color: #0f2044;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.service-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #0a1628;
+  line-height: 1.3;
+}
+
+.service-desc {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.65;
+  flex: 1;
+}
+
+.service-arrow {
+  color: #9ca3af;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.25s ease;
+  align-self: flex-end;
+}

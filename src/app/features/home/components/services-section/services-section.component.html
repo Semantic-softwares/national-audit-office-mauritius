@@ -1,0 +1,32 @@
+<section class="services-section">
+  <div class="container mx-auto px-4">
+    <div class="section-header">
+      <span class="section-tag">Our Services</span>
+      <h2 class="section-title">NAO Audit <span class="highlight">Services & Departments</span></h2>
+      <p class="section-desc">
+        We deliver a comprehensive range of audit services to promote accountability,
+        transparency, and good governance across the public sector.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      @for (service of services; track service.title; let i = $index) {
+        <a routerLink="/services" class="service-card group">
+          <div class="card-number">{{ (i + 1).toString().padStart(2, '0') }}</div>
+          <div class="service-icon">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" [attr.d]="service.icon"/>
+            </svg>
+          </div>
+          <h3 class="service-title">{{ service.title }}</h3>
+          <p class="service-desc">{{ service.description }}</p>
+          <div class="service-arrow">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+<section class="quick-links-section">
+  <div class="container mx-auto px-4">
+    <div class="section-header">
+      <span class="section-tag">Quick Access</span>
+      <h2 class="section-title">How Can We <span class="highlight">Help You?</span></h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (item of items; track item.title) {
+        <a [routerLink]="item.link" class="quick-card group">
+          <div class="icon-wrap" [style.background]="item.color + '18'" [style.color]="item.color">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" [attr.d]="item.icon"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">{{ item.title }}</h3>
+            <p class="card-desc">{{ item.description }}</p>
+          </div>
+          <div class="card-arrow" [style.color]="item.color">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>

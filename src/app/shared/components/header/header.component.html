@@ -1,0 +1,160 @@
+<header [class.scrolled]="scrolled()" class="site-header">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container mx-auto px-4 flex items-center justify-between text-sm">
+      <div class="flex items-center gap-6 text-white/80">
+        <span class="flex items-center gap-1">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+          info&#64;nao.govmu.org
+        </span>
+        <span class="flex items-center gap-1">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+          +230 212 5476
+        </span>
+      </div>
+      <div class="flex items-center gap-3 text-white/80">
+        <a href="#" aria-label="Facebook" class="hover:text-white transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter" class="hover:text-white transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube" class="hover:text-white transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Nav -->
+  <nav class="main-nav">
+    <div class="container mx-auto px-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a routerLink="/" class="logo-area flex items-center gap-3">
+        <img src="assets/images/logo.png" alt="Coat of Arms of Mauritius" class="logo-img" />
+        <div class="logo-text">
+          <p class="font-bold text-sm leading-tight">National Audit Office</p>
+          <p class="text-xs opacity-70 leading-tight">Republic of Mauritius</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="hidden lg:flex items-center gap-1">
+        @for (link of navLinks; track link.path) {
+          <li
+            class="nav-item"
+            [class.has-dropdown]="link.dropdown"
+            (mouseenter)="link.dropdown ? openDropdown(link.label) : null"
+            (mouseleave)="closeDropdown()"
+          >
+            @if (link.dropdown) {
+              <!-- Dropdown trigger -->
+              <button
+                class="nav-link dropdown-trigger"
+                [class.active]="activeDropdown() === link.label"
+                [attr.aria-expanded]="activeDropdown() === link.label"
+              >
+                {{ link.label }}
+                <svg class="dropdown-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+
+              <!-- Dropdown Panel -->
+              @if (activeDropdown() === link.label) {
+                <div class="dropdown-panel" role="menu"
+                  (mouseenter)="openDropdown(link.label)"
+                  (mouseleave)="closeDropdown()"
+                >
+                  @for (item of link.dropdown; track item.path) {
+                    <a
+                      [routerLink]="item.path"
+                      class="dropdown-item"
+                      role="menuitem"
+                      (click)="closeDropdown()"
+                    >{{ item.label }}</a>
+                  }
+                </div>
+              }
+            } @else {
+              <!-- Regular link -->
+              <a
+                [routerLink]="link.path"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+                class="nav-link"
+              >{{ link.label }}</a>
+            }
+          </li>
+        }
+      </ul>
+
+      <!-- CTA + Hamburger -->
+      <div class="flex items-center gap-3">
+        <a routerLink="/reports" class="hidden md:inline-flex cta-btn">
+          Latest Reports
+        </a>
+        <button
+          class="lg:hidden hamburger-btn"
+          (click)="toggleMobileMenu()"
+          aria-label="Toggle menu"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            @if (mobileMenuOpen()) {
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            } @else {
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            }
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (mobileMenuOpen()) {
+      <div class="mobile-menu lg:hidden">
+        <div class="container mx-auto px-4 py-4">
+          <ul class="flex flex-col gap-1">
+            @for (link of navLinks; track link.path) {
+              <li>
+                @if (link.dropdown) {
+                  <!-- Mobile dropdown accordion -->
+                  <button
+                    class="mobile-nav-link w-full flex items-center justify-between"
+                    (click)="toggleMobileDropdown(link.label)"
+                  >
+                    <span>{{ link.label }}</span>
+                    <svg class="w-4 h-4 transition-transform" [class.rotate-180]="mobileOpenDropdown() === link.label" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </button>
+                  @if (mobileOpenDropdown() === link.label) {
+                    <ul class="mobile-submenu">
+                      @for (item of link.dropdown; track item.path) {
+                        <li>
+                          <a
+                            [routerLink]="item.path"
+                            class="mobile-submenu-link"
+                            (click)="toggleMobileMenu()"
+                          >{{ item.label }}</a>
+                        </li>
+                      }
+                    </ul>
+                  }
+                } @else {
+                  <a
+                    [routerLink]="link.path"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+                    class="mobile-nav-link"
+                    (click)="toggleMobileMenu()"
+                  >{{ link.label }}</a>
+                }
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    }
+  </nav>
+</header>

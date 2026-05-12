@@ -1,0 +1,134 @@
+@if (notFound()) {
+  <div class="not-found">
+    <h2>Event not found</h2>
+    <a routerLink="/events">← Back to Events</a>
+  </div>
+}
+
+@if (event(); as ev) {
+  <!-- Hero -->
+  <div class="evd-hero">
+    <div class="container mx-auto px-4">
+      <nav class="breadcrumb">
+        <a routerLink="/" class="bc-link">Home</a>
+        <span class="bc-sep">›</span>
+        <a routerLink="/events" class="bc-link">Events</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-current">{{ ev.title }}</span>
+      </nav>
+      <div class="hero-meta">
+        <span class="event-category">{{ ev.category }}</span>
+        <span class="event-status" [class]="'status-' + ev.status">{{ statusLabel(ev.status) }}</span>
+      </div>
+      <h1 class="hero-title">{{ ev.title }}</h1>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="evd-body">
+    <div class="container mx-auto px-4">
+      <div class="evd-layout">
+
+        <!-- Main content -->
+        <main class="evd-content">
+          <div class="content-card">
+            <h2 class="section-heading">About this Event</h2>
+            @for (para of ev.description; track $index) {
+              <p class="body-para">{{ para }}</p>
+            }
+          </div>
+
+          @if (ev.agenda && ev.agenda.length > 0) {
+            <div class="content-card">
+              <h2 class="section-heading">Programme / Agenda</h2>
+              <div class="agenda-list">
+                @for (item of ev.agenda; track $index) {
+                  <div class="agenda-item">
+                    <span class="agenda-time">{{ item.time }}</span>
+                    <span class="agenda-activity">{{ item.activity }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+
+          <a routerLink="/events" class="back-link">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            Back to All Events
+          </a>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="evd-sidebar">
+          <div class="sidebar-card">
+            <h3 class="sidebar-heading">Event Details</h3>
+
+            <div class="detail-item">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <div>
+                <span class="detail-label">Date</span>
+                <span class="detail-value">{{ formatDateRange(ev) }}</span>
+              </div>
+            </div>
+
+            @if (ev.time) {
+              <div class="detail-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                  <span class="detail-label">Time</span>
+                  <span class="detail-value">{{ ev.time }}</span>
+                </div>
+              </div>
+            }
+
+            <div class="detail-item">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <div>
+                <span class="detail-label">Location</span>
+                <span class="detail-value">{{ ev.location }}</span>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+              </svg>
+              <div>
+                <span class="detail-label">Category</span>
+                <span class="detail-value">{{ ev.category }}</span>
+              </div>
+            </div>
+
+            @if (ev.contact) {
+              <div class="detail-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <div>
+                  <span class="detail-label">Contact</span>
+                  <a class="detail-value contact-link" [href]="'mailto:' + ev.contact">{{ ev.contact }}</a>
+                </div>
+              </div>
+            }
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </div>
+}

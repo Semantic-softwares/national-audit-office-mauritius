@@ -1,0 +1,65 @@
+<!-- Hero -->
+<div class="news-hero">
+  <div class="container mx-auto px-4">
+    <nav class="breadcrumb">
+      <a routerLink="/" class="bc-link">Home</a>
+      <span class="bc-sep">›</span>
+      <span class="bc-current">News</span>
+    </nav>
+    <span class="section-tag">Latest Updates</span>
+    <h1 class="hero-title">News &amp; Announcements</h1>
+    <p class="hero-desc">
+      The latest news, press releases and announcements from the National Audit Office of Mauritius.
+    </p>
+  </div>
+</div>
+
+<!-- Category filter -->
+<div class="filter-bar">
+  <div class="container mx-auto px-4">
+    <div class="filter-scroll">
+      @for (cat of categories; track cat) {
+        <button
+          class="filter-btn"
+          [class.active]="activeCategory() === cat"
+          (click)="setCategory(cat)"
+        >{{ cat }}</button>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Articles -->
+<div class="news-body">
+  <div class="container mx-auto px-4">
+    @if (filteredNews().length === 0) {
+      <div class="empty-state">
+        <p>No news articles found for this category.</p>
+      </div>
+    }
+
+    <div class="news-grid">
+      @for (article of filteredNews(); track article.slug) {
+        <article class="news-card">
+          <div class="card-top">
+            <span class="news-category">{{ article.category }}</span>
+            <span class="news-date">{{ formatDate(article.date) }}</span>
+          </div>
+          <h2 class="news-title">{{ article.title }}</h2>
+          <p class="news-summary">{{ article.summary }}</p>
+          <div class="card-tags">
+            @for (tag of article.tags.slice(0, 3); track tag) {
+              <span class="tag">{{ tag }}</span>
+            }
+          </div>
+          <a [routerLink]="['/news', article.slug]" class="read-more">
+            Read More
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </article>
+      }
+    </div>
+  </div>
+</div>

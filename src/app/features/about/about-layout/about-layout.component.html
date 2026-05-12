@@ -1,0 +1,73 @@
+<!-- Hero Banner -->
+<div class="about-hero">
+  <div class="container mx-auto px-4">
+    <nav class="breadcrumb">
+      <a routerLink="/" class="bc-link">Home</a>
+      <span class="bc-sep">›</span>
+      <span class="bc-current">About NAO</span>
+    </nav>
+    <span class="section-tag">National Audit Office</span>
+    <h1 class="hero-title">About NAO</h1>
+    <p class="hero-desc">
+      Independent guardian of Mauritius's public finances — promoting accountability,
+      transparency and good governance since 1871.
+    </p>
+  </div>
+</div>
+
+<!-- Body -->
+<div class="about-body">
+  <div class="container mx-auto px-4">
+    <div class="about-layout">
+
+      <!-- Sidebar -->
+      <aside class="about-sidebar">
+        <nav class="sidebar-nav">
+          <h3 class="sidebar-heading">About NAO</h3>
+          <ul>
+            @for (item of navItems; track item.path) {
+              <li>
+                <a
+                  [routerLink]="item.path"
+                  routerLinkActive="active"
+                  class="sidebar-link"
+                >
+                  <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.iconPath"/>
+                  </svg>
+                  {{ item.label }}
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
+
+        <!-- Info card -->
+        <div class="sidebar-info">
+          <div class="info-row">
+            <p class="info-label">Established</p>
+            <p class="info-value">1968</p>
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-row">
+            <p class="info-label">Constitutional Body</p>
+            <p class="info-desc">Section 110, Constitution of the Republic of Mauritius</p>
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-row">
+            <p class="info-label">International Memberships</p>
+            <p class="info-desc">INTOSAI · AFROSAI-E · COMESA · COI</p>
+          </div>
+          <div class="info-divider"></div>
+          <a routerLink="/contact" class="sidebar-cta">Contact NAO →</a>
+        </div>
+      </aside>
+
+      <!-- Routed content -->
+      <main class="about-content">
+        <router-outlet />
+      </main>
+
+    </div>
+  </div>
+</div>

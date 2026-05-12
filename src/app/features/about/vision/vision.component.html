@@ -1,0 +1,76 @@
+<!-- Page Header -->
+<div class="page-header">
+  <span class="page-tag">Our Aspiration</span>
+  <h2 class="page-heading">Our Vision</h2>
+  <p class="page-subheading">Where we are headed</p>
+</div>
+
+<!-- Vision Statement -->
+<div class="vision-statement">
+  <div class="eye-icon">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="28" height="28">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+        d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+    </svg>
+  </div>
+  <blockquote>
+    To be recognized as a highly respected professional organisation providing high quality
+    audit services geared towards transparency, accountability and good governance.
+  </blockquote>
+  <div class="statement-footer">
+    <div class="statement-line"></div>
+    <span class="statement-label">NAO Vision Statement</span>
+  </div>
+</div>
+
+<!-- Strategic Pillars -->
+<div class="section-block">
+  <h3 class="section-title">Our Three Strategic Pillars</h3>
+  <p class="section-intro">
+    The vision is anchored in three interlocking pillars that shape our strategic direction
+    and inform every audit engagement we undertake.
+  </p>
+  <div class="pillars-grid">
+    @for (pillar of pillars; track pillar.title) {
+      <div class="pillar-card">
+        <div class="pillar-icon-wrap" [style.background]="pillar.color + '18'">
+          <svg class="pillar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+               [style.color]="pillar.color">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" [attr.d]="pillar.icon"/>
+          </svg>
+        </div>
+        <h4 class="pillar-title">{{ pillar.title }}</h4>
+        <p class="pillar-desc">{{ pillar.desc }}</p>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- Our Commitment -->
+<div class="section-block commitment-section">
+  <h3 class="section-title">Our Commitment to Excellence</h3>
+  <p class="section-intro">
+    Achieving our vision requires sustained commitment across every dimension of our work.
+    We measure ourselves against these benchmarks:
+  </p>
+  <div class="commitments-grid">
+    @for (item of commitments; track item.label) {
+      <div class="commitment-item">
+        <div class="commitment-dot"></div>
+        <div>
+          <p class="commitment-label">{{ item.label }}</p>
+          <p class="commitment-desc">{{ item.desc }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- Closing statement -->
+<div class="closing-block">
+  <p>
+    The National Audit Office of Mauritius is steadfast in its pursuit of this vision,
+    working in partnership with government, civil society and international bodies to
+    continually raise the bar for public sector accountability in the Republic of Mauritius.
+  </p>
+</div>

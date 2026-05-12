@@ -1,0 +1,67 @@
+<!-- Page Hero Banner -->
+<div class="page-hero">
+  <div class="container mx-auto px-4">
+    <nav class="breadcrumb">
+      <a routerLink="/" class="bc-link">Home</a>
+      <span class="bc-sep">›</span>
+      <span class="bc-current">Senior Staff</span>
+    </nav>
+    <span class="section-tag">Our People</span>
+    <h1 class="page-title">Senior Staff</h1>
+    <p class="page-desc">
+      Meet the dedicated professionals leading the National Audit Office of Mauritius in
+      upholding public financial integrity and accountability.
+    </p>
+  </div>
+</div>
+
+<!-- Filter Bar -->
+<div class="filter-bar">
+  <div class="container mx-auto px-4">
+    <div class="filter-scroll">
+      @for (dept of departments; track dept) {
+        <button
+          class="filter-btn"
+          [class.active]="activeFilter === dept"
+          (click)="setFilter(dept)"
+        >
+          {{ dept }}
+        </button>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Staff Grid -->
+<section class="staff-grid-section">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      @for (member of filtered; track member.slug) {
+        <a [routerLink]="['/staff', member.slug]" class="staff-card group">
+          <div class="card-image-wrap">
+            <img
+              [src]="member.image"
+              [alt]="member.name"
+              class="card-image"
+              loading="lazy"
+            />
+            <div class="card-overlay">
+              <span class="view-profile-btn">View Profile</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="card-dept-tag">{{ member.department }}</span>
+            <h3 class="card-name">{{ member.name }}</h3>
+            <p class="card-title">{{ member.title }}</p>
+          </div>
+        </a>
+      }
+    </div>
+
+    @if (filtered.length === 0) {
+      <div class="no-results">
+        <p>No staff members found in this division.</p>
+      </div>
+    }
+  </div>
+</section>

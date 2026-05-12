@@ -1,0 +1,114 @@
+<!-- Hero -->
+<div class="reports-hero">
+  <div class="container mx-auto px-4">
+    <nav class="breadcrumb">
+      <a routerLink="/" class="bc-link">Home</a>
+      <span class="bc-sep">›</span>
+      <span class="bc-current">Reports & Publications</span>
+    </nav>
+    <span class="section-tag">Publications</span>
+    <h1 class="hero-title">Reports & Publications</h1>
+    <p class="hero-desc">
+      Browse the complete catalogue of audit reports and publications from the National Audit Office —
+      from annual audit reports to performance reviews, compliance findings, and procurement plans.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="stat-val">7</span>
+        <span class="stat-lbl">Report Categories</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-val">200+</span>
+        <span class="stat-lbl">Documents Available</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-val">Since 1968</span>
+        <span class="stat-lbl">Archive Coverage</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Filter tabs -->
+<div class="filter-bar">
+  <div class="container mx-auto px-4">
+    <div class="filter-scroll">
+      <button
+        class="filter-btn"
+        [class.active]="activeFilter() === 'all'"
+        (click)="setFilter('all')"
+      >All Reports</button>
+      @for (cat of categories; track cat.slug) {
+        <button
+          class="filter-btn"
+          [class.active]="activeFilter() === cat.slug"
+          (click)="setFilter(cat.slug)"
+        >{{ cat.name }}</button>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Report cards -->
+<div class="reports-body">
+  <div class="container mx-auto px-4">
+    <div class="categories-grid">
+      @for (cat of filteredCategories(); track cat.slug) {
+        <div class="cat-card">
+          <!-- Card header -->
+          <div class="cat-header" [style.background]="cat.color">
+            <div class="cat-icon-wrap">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="22" height="22">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" [attr.d]="cat.iconPath"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="cat-name">{{ cat.name }}</h3>
+              <span class="cat-meta">{{ totalDocuments(cat) }} docs · {{ cat.years.length }} years</span>
+            </div>
+          </div>
+
+          <!-- Latest documents preview -->
+          <div class="cat-body">
+            <div class="latest-label">
+              <span class="latest-year-badge">{{ latestYear(cat) }}</span>
+              Latest documents
+            </div>
+            <ul class="latest-docs">
+              @for (doc of latestYearDocuments(cat).slice(0, 2); track doc.title) {
+                <li class="latest-doc-item">
+                  <svg fill="currentColor" viewBox="0 0 20 20" width="14" height="14" class="pdf-icon">
+                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="latest-doc-title">{{ doc.title }}</span>
+                </li>
+              }
+              @if (latestYearDocuments(cat).length > 2) {
+                <li class="latest-doc-more">
+                  +{{ latestYearDocuments(cat).length - 2 }} more document{{ latestYearDocuments(cat).length - 2 !== 1 ? 's' : '' }}
+                </li>
+              }
+            </ul>
+          </div>
+
+          <!-- Card footer -->
+          <div class="cat-footer">
+            <a [routerLink]="['/reports', cat.slug]" class="view-all-btn">
+              Browse All Years
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Empty state -->
+    @if (filteredCategories().length === 0) {
+      <div class="empty-state">
+        <p>No reports found for this category.</p>
+      </div>
+    }
+  </div>
+</div>

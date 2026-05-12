@@ -1,0 +1,71 @@
+<section class="hero-section">
+  <!-- Background overlay pattern -->
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <!-- Hero Content -->
+  <div class="container mx-auto px-4 relative z-10 flex items-center min-h-[600px] py-20">
+    <div class="max-w-2xl">
+      @for (slide of slides; track $index) {
+        @if ($index === currentSlide()) {
+          <div class="hero-content animate-fade-in">
+            <div class="badge mb-4">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              National Audit Office — Republic of Mauritius
+            </div>
+            <h1 class="hero-title">
+              {{ slide.title }}<br>
+              <span class="text-gold">{{ slide.subtitle }}</span>
+            </h1>
+            <p class="hero-description">{{ slide.description }}</p>
+            <div class="flex flex-wrap gap-4 mt-8">
+              <a [routerLink]="slide.ctaLink" class="btn-primary">
+                {{ slide.cta }}
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+              <a [routerLink]="slide.secondaryCtaLink" class="btn-outline">
+                {{ slide.secondaryCta }}
+              </a>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+  <!-- Slide Dots -->
+  <div class="slide-dots">
+    @for (slide of slides; track $index) {
+      <button
+        class="dot"
+        [class.active]="$index === currentSlide()"
+        (click)="goToSlide($index)"
+        [attr.aria-label]="'Go to slide ' + ($index + 1)"
+      ></button>
+    }
+  </div>
+
+  <!-- Stats Strip -->
+  <div class="stats-strip">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-white/20">
+        <div class="stat-item">
+          <span class="stat-number">56+</span>
+          <span class="stat-label">Years of Service</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">1,200+</span>
+          <span class="stat-label">Audit Reports Issued</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">300+</span>
+          <span class="stat-label">Public Entities Audited</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">98%</span>
+          <span class="stat-label">Compliance Rate</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

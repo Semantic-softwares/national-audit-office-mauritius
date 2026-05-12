@@ -1,0 +1,134 @@
+@if (member) {
+  <!-- Breadcrumb Bar -->
+  <div class="breadcrumb-bar">
+    <div class="container mx-auto px-4">
+      <nav class="breadcrumb">
+        <a routerLink="/" class="bc-link">Home</a>
+        <span class="bc-sep">›</span>
+        <a routerLink="/staff" class="bc-link">Senior Staff</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-current">{{ member.name }}</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Profile Page -->
+  <div class="profile-page">
+    <div class="container mx-auto px-4">
+      <div class="profile-layout">
+
+        <!-- ── Sidebar ────────────────────────────────────────── -->
+        <aside class="profile-sidebar">
+          <div class="photo-card">
+            <img
+              [src]="member.image"
+              [alt]="member.name"
+              class="profile-photo"
+            />
+          </div>
+
+          <div class="identity-card">
+            <span class="dept-badge">{{ member.department }}</span>
+            <h1 class="sidebar-name">{{ member.name }}</h1>
+            <p class="sidebar-title">{{ member.title }}</p>
+          </div>
+
+          <div class="contact-card">
+            <h4 class="contact-heading">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              Email
+            </h4>
+            <a [href]="'mailto:' + member.email" class="contact-value">{{ member.email }}</a>
+
+            <h4 class="contact-heading mt-4">
+              <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+              </svg>
+              Phone
+            </h4>
+            <a [href]="'tel:' + member.phone" class="contact-value">{{ member.phone }}</a>
+          </div>
+
+          <a routerLink="/staff" class="back-btn">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            Back to Staff
+          </a>
+        </aside>
+
+        <!-- ── Main Content ───────────────────────────────────── -->
+        <main class="profile-content">
+
+          <!-- Biography -->
+          <section class="content-section">
+            <div class="section-label">
+              <div class="label-bar"></div>
+              <h2 class="section-heading">Biography</h2>
+            </div>
+            <div class="bio-text">
+              @for (para of member.bio; track para) {
+                <p>{{ para }}</p>
+              }
+            </div>
+          </section>
+
+          <!-- Qualifications -->
+          <section class="content-section">
+            <div class="section-label">
+              <div class="label-bar"></div>
+              <h2 class="section-heading">Academic &amp; Professional Qualifications</h2>
+            </div>
+            <ul class="detail-list">
+              @for (q of member.qualifications; track q) {
+                <li>
+                  <svg class="list-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="M12 2a10 10 0 100 20 10 10 0 000-20z" opacity="0.3"/>
+                  </svg>
+                  {{ q }}
+                </li>
+              }
+            </ul>
+          </section>
+
+          <!-- Responsibilities -->
+          <section class="content-section">
+            <div class="section-label">
+              <div class="label-bar"></div>
+              <h2 class="section-heading">Key Responsibilities</h2>
+            </div>
+            <ul class="detail-list responsibilities">
+              @for (r of member.responsibilities; track r) {
+                <li>
+                  <svg class="list-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+                  </svg>
+                  {{ r }}
+                </li>
+              }
+            </ul>
+          </section>
+
+        </main>
+      </div>
+    </div>
+  </div>
+}
+
+@if (notFound) {
+  <div class="not-found-page">
+    <div class="container mx-auto px-4 text-center">
+      <div class="nf-icon">404</div>
+      <h2 class="nf-title">Staff Member Not Found</h2>
+      <p class="nf-desc">The profile you are looking for does not exist or may have moved.</p>
+      <a routerLink="/staff" class="nf-btn">
+        ← Back to Senior Staff
+      </a>
+    </div>
+  </div>
+}

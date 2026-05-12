@@ -1,0 +1,41 @@
+<section class="news-section">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+      <div>
+        <span class="section-tag">Latest News</span>
+        <h2 class="section-title">NAO <span class="highlight">News & Publications</span></h2>
+      </div>
+      <a routerLink="/news" class="view-all-link">
+        All News
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      @for (item of news; track item.slug) {
+        <article class="news-card group">
+          <div class="card-image">
+            <img [src]="item.image" [alt]="item.title" loading="lazy" />
+            <span class="category-badge">{{ item.category }}</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="meta-date">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                {{ item.date }}
+              </span>
+            </div>
+            <h3 class="news-title">{{ item.title }}</h3>
+            <p class="news-excerpt">{{ item.excerpt }}</p>
+            <a [routerLink]="['/news', item.slug]" class="read-more">
+              Read More
+              <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

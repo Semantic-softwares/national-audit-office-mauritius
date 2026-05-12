@@ -1,0 +1,150 @@
+.team-section {
+  padding: 5.5rem 0;
+  background: #f8f9fc;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+
+.section-tag {
+  display: inline-block;
+  background: rgba(200, 168, 75, 0.12);
+  color: #c8a84b;
+  border: 1px solid rgba(200, 168, 75, 0.35);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 0.875rem;
+}
+
+.section-title {
+  font-size: clamp(1.625rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: #0a1628;
+  line-height: 1.2;
+  margin-bottom: 0.875rem;
+}
+
+.highlight {
+  color: #c8a84b;
+}
+
+.section-desc {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  line-height: 1.7;
+}
+
+.team-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e5e9f0;
+  transition: all 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+    border-color: transparent;
+  }
+}
+
+.member-image-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+}
+
+.member-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+
+  .team-card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 22, 40, 0.7);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  .team-card:hover & {
+    opacity: 1;
+  }
+}
+
+.overlay-links {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.overlay-btn {
+  background: white;
+  color: #0a1628;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #c8a84b;
+    color: white;
+  }
+}
+
+.member-info {
+  padding: 1.25rem;
+  text-align: center;
+  border-top: 3px solid #c8a84b;
+}
+
+.member-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0a1628;
+  margin-bottom: 0.25rem;
+}
+
+.member-role {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid #0a1628;
+  color: #0a1628;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #0a1628;
+    color: white;
+  }
+}

@@ -1,0 +1,51 @@
+<!-- Page Header -->
+<div class="page-header">
+  <span class="page-tag">Our Heritage</span>
+  <h2 class="page-heading">History of the NAO</h2>
+  <p class="page-subheading">From colonial audit to constitutional independence</p>
+</div>
+
+<!-- Milestone bar -->
+<div class="milestone-scroll-wrap">
+  <div class="milestones-row">
+    @for (m of milestones; track m.year) {
+      <div class="milestone-item">
+        <span class="milestone-year">{{ m.year }}</span>
+        <div class="milestone-dot"></div>
+        <span class="milestone-event">{{ m.event }}</span>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- Timeline -->
+<div class="timeline-section">
+  <h3 class="timeline-heading">Full History</h3>
+
+  <div class="timeline">
+    @for (entry of timeline; track entry.title; let last = $last) {
+      <div class="timeline-item" [class.last]="last">
+        <div class="timeline-node">
+          <div class="node-circle">
+            <div class="node-inner"></div>
+          </div>
+          @if (!last) {
+            <div class="node-line"></div>
+          }
+        </div>
+        <div class="timeline-content">
+          <div class="entry-meta">
+            <span class="entry-era">{{ entry.era }}</span>
+            @if (entry.year) {
+              <span class="entry-year">{{ entry.year }}</span>
+            }
+          </div>
+          <h4 class="entry-title">{{ entry.title }}</h4>
+          @for (para of entry.paragraphs; track para) {
+            <p class="entry-para">{{ para }}</p>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>
