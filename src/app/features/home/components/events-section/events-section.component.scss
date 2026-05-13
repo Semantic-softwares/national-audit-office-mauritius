@@ -65,6 +65,12 @@
     border-color: transparent;
     transform: translateX(4px);
   }
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+  }
 }
 
 .event-date {
@@ -102,6 +108,10 @@
 .event-content {
   flex: 1;
   min-width: 0;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 }
 
 .event-category {
@@ -120,9 +130,10 @@
   color: #0a1628;
   line-height: 1.35;
   margin-bottom: 0.5rem;
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .event-meta {
@@ -156,6 +167,11 @@
   &:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(200, 168, 75, 0.4);
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    justify-content: center;
   }
 }
 
